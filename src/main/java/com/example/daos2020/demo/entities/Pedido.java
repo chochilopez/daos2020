@@ -34,19 +34,14 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "vendedor_id")
-    private Vendedor vendedor;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pedido")
     private Set<PedidoProducto> pedidoProductos;
 
     public Pedido() {
     }
 
-    public Pedido(Cliente cliente, Vendedor vendedor) {
+    public Pedido(Cliente cliente) {
         this.cliente = cliente;
-        this.vendedor = vendedor;
         this.creado=Helper.getToday();
     }
 
@@ -98,14 +93,6 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
-
     public Set<PedidoProducto> getPedidoProductos() {
         return pedidoProductos;
     }
@@ -123,7 +110,6 @@ public class Pedido {
                 ", actualizado=" + actualizado +
                 ", borrado=" + borrado +
                 ", cliente=" + cliente +
-                ", vendedor=" + vendedor +
                 ", pedidoProductos=" + pedidoProductos +
                 '}';
     }

@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value="/api/pedido")
 public class PedidoControllerRest {
+
     @Autowired
     private PedidoServiceImpl service;
 
@@ -52,18 +53,14 @@ public class PedidoControllerRest {
     @GetMapping(value="/recycle/{id}")
     public Pedido recycle(@PathVariable Long id){
         Optional<Pedido> obj=service.showWithDeleted(id);
-        obj.get().setBorrado(null);
-        service.save(obj.get());
+        service.recycle(obj.get());
 
         return obj.get();
     };
 
     @GetMapping(value="/delete/{id}")
     public void delete(@PathVariable Long id){
-        Optional<Pedido> obj=service.showWithDeleted(id);
-        obj.get().setBorrado(Helper.getToday());
-        service.save(obj.get());
-
+        service.delete(id);
     };
 
     @GetMapping(value="/destroy/{id}")

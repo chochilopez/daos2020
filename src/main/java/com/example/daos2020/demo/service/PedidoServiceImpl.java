@@ -17,7 +17,6 @@ public class PedidoServiceImpl implements PedidoService {
     @Autowired
     private PedidoRepository repositorio;
 
-    //FIXME toda la logica tiene que estar en el srvicio y no en el controlador
     @Override
     public List<Pedido> all(){
         List<Pedido> result = repositorio.all();
