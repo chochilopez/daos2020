@@ -14,11 +14,13 @@ import java.util.Set;
 @Entity
 public class Pedido {
 
+    //FIXME establecer indices
     @Id
     @Column(name = "id_pedido")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //FIXME definir scale
     private Double total;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,6 +40,7 @@ public class Pedido {
     private Set<PedidoProducto> pedidoProductos;
 
     public Pedido() {
+        this.creado=Helper.getToday();
     }
 
     public Pedido(Cliente cliente) {

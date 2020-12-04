@@ -40,6 +40,7 @@ public class PedidoProducto {
     private Date borrado;
 
     public PedidoProducto() {
+        this.creado=Helper.getToday();
     }
 
     public PedidoProducto(Pedido pedido, Producto producto, Integer cantidad, Double precio) {

@@ -1,51 +1,27 @@
-package com.example.daos2020.demo.entities;
+package com.example.daos2020.demo.dto;
 
-import com.example.daos2020.demo.helpers.Helper;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.validator.constraints.UniqueElements;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import com.example.daos2020.demo.entities.Cliente;
+import org.springframework.hateoas.RepresentationModel;
 import java.util.Date;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-@Entity
-public class Cliente {
+//Patrón de diseño Data Transfer Object
+public class ClienteResponseDTO extends RepresentationModel<ClienteResponseDTO> {
 
-    @Id
-    @Column(name = "id_cliente")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
-
     private String apellido;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date creado;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date actualizado;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date borrado;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ciudad_id")
-    private Ciudad ciudad;
-
-    public Cliente() {
-        this.creado=Helper.getToday();
-    }
-
-    public Cliente(String nombre, String apellido, Ciudad ciudad) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.ciudad = ciudad;
-        this.creado=Helper.getToday();
+    public ClienteResponseDTO(Cliente pojo){
+        super();
+        this.id=pojo.getId();
+        this.nombre=pojo.getNombre();
+        this.apellido= pojo.getApellido();
+        this.creado=pojo.getCreado();
+        this.actualizado=pojo.getActualizado();
+        this.borrado=pojo.getBorrado();
     }
 
     public Long getId() {
@@ -96,24 +72,16 @@ public class Cliente {
         this.borrado = borrado;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
-    }
-
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "ClienteResponseDTO{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", creado=" + creado +
                 ", actualizado=" + actualizado +
                 ", borrado=" + borrado +
-                ", ciudad=" + ciudad +
                 '}';
     }
 }
+

@@ -34,6 +34,7 @@ public class Producto {
     private Date borrado;
 
     public Producto() {
+        this.creado=Helper.getToday();
     }
 
     public Producto(Long id, String modelo, String marca, Double precio) {
