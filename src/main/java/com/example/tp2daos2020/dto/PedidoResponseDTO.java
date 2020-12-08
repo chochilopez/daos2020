@@ -1,24 +1,29 @@
-package com.example.daos2020.demo.dto;
+package com.example.tp2daos2020.dto;
 
-import com.example.daos2020.demo.entities.Cliente;
+import com.example.tp2daos2020.entities.Cliente;
+import com.example.tp2daos2020.entities.Pedido;
+import com.example.tp2daos2020.entities.PedidoProducto;
 import org.springframework.hateoas.RepresentationModel;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 //Patrón de diseño Data Transfer Object
-public class ClienteResponseDTO extends RepresentationModel<ClienteResponseDTO> {
+public class PedidoResponseDTO extends RepresentationModel<PedidoResponseDTO> {
 
     private Long id;
-    private String nombre;
-    private String apellido;
+    private Double total;
     private Date creado;
     private Date actualizado;
     private Date borrado;
+    private Cliente cliente;
 
-    public ClienteResponseDTO(Cliente pojo){
+    public PedidoResponseDTO(Pedido pojo){
         super();
         this.id=pojo.getId();
-        this.nombre=pojo.getNombre();
-        this.apellido= pojo.getApellido();
+        this.total=pojo.getTotal();
+        this.cliente= pojo.getCliente();
         this.creado=pojo.getCreado();
         this.actualizado=pojo.getActualizado();
         this.borrado=pojo.getBorrado();
@@ -32,20 +37,12 @@ public class ClienteResponseDTO extends RepresentationModel<ClienteResponseDTO> 
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public Date getCreado() {
@@ -72,15 +69,23 @@ public class ClienteResponseDTO extends RepresentationModel<ClienteResponseDTO> 
         this.borrado = borrado;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
-        return "ClienteResponseDTO{" +
+        return "PedidoResponseDTO{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
+                ", total=" + total +
                 ", creado=" + creado +
                 ", actualizado=" + actualizado +
                 ", borrado=" + borrado +
+                ", cliente=" + cliente +
                 '}';
     }
 }

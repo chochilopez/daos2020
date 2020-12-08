@@ -1,13 +1,13 @@
-package com.example.daos2020.demo;
+package com.example.tp2daos2020;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Daos2020Tp2Application {
+public class Tp2daos2020Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Daos2020Tp2Application.class, args);
+        SpringApplication.run(Tp2daos2020Application.class, args);
     }
 
 }

@@ -1,12 +1,10 @@
-package com.example.daos2020.demo.entities;
+package com.example.tp2daos2020.entities;
 
-import com.example.daos2020.demo.helpers.Helper;
+import com.example.tp2daos2020.helpers.Helper;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @JsonIdentityInfo(
@@ -38,7 +36,7 @@ public class Cliente {
     private Ciudad ciudad;
 
     public Cliente() {
-        this.creado=Helper.getToday();
+        this.creado= Helper.getToday();
     }
 
     public Cliente(String nombre, String apellido, Ciudad ciudad) {

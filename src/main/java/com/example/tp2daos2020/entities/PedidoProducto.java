@@ -1,6 +1,6 @@
-package com.example.daos2020.demo.entities;
+package com.example.tp2daos2020.entities;
 
-import com.example.daos2020.demo.helpers.Helper;
+import com.example.tp2daos2020.helpers.Helper;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -28,7 +28,7 @@ public class PedidoProducto {
 
     private Integer cantidad;
 
-    private Double precio;
+    private Double total;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creado;
@@ -47,7 +47,7 @@ public class PedidoProducto {
         this.pedido = pedido;
         this.producto = producto;
         this.cantidad = cantidad;
-        this.precio = precio;
+        this.total = precio;
         this.creado=Helper.getToday();
     }
 
@@ -83,12 +83,12 @@ public class PedidoProducto {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setTotal(Double precio) {
+        this.total = precio;
     }
 
     public Date getCreado() {
@@ -122,7 +122,7 @@ public class PedidoProducto {
                 ", pedido=" + pedido +
                 ", producto=" + producto +
                 ", cantidad=" + cantidad +
-                ", precio=" + precio +
+                ", total=" + total +
                 ", creado=" + creado +
                 ", actualizado=" + actualizado +
                 ", borrado=" + borrado +

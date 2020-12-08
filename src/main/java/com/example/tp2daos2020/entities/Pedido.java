@@ -1,6 +1,6 @@
-package com.example.daos2020.demo.entities;
+package com.example.tp2daos2020.entities;
 
-import com.example.daos2020.demo.helpers.Helper;
+import com.example.tp2daos2020.helpers.Helper;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 

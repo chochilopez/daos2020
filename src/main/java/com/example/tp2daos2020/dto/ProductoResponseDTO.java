@@ -1,48 +1,30 @@
-package com.example.daos2020.demo.entities;
+package com.example.tp2daos2020.dto;
 
-import com.example.daos2020.demo.helpers.Helper;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.example.tp2daos2020.entities.Producto;
+import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-@Entity
-public class Producto {
+//Patrón de diseño Data Transfer Object
+public class ProductoResponseDTO extends RepresentationModel<ProductoResponseDTO> {
 
-    @Id
-    @Column(name = "id_producto")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String modelo;
-
     private String marca;
-
+    private String modelo;
     private Double precio;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date creado;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date actualizado;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date borrado;
 
-    public Producto() {
-        this.creado=Helper.getToday();
-    }
-
-    public Producto(Long id, String modelo, String marca, Double precio) {
-        this.id = id;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.precio = precio;
-        this.creado = Helper.getToday();
+    public ProductoResponseDTO(Producto pojo){
+        super();
+        this.id=pojo.getId();
+        this.marca=pojo.getMarca();
+        this.modelo= pojo.getModelo();
+        this.precio= pojo.getPrecio();
+        this.creado=pojo.getCreado();
+        this.actualizado=pojo.getActualizado();
+        this.borrado=pojo.getBorrado();
     }
 
     public Long getId() {
@@ -53,20 +35,20 @@ public class Producto {
         this.id = id;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
     public String getMarca() {
         return marca;
     }
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public Double getPrecio() {
@@ -103,10 +85,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
+        return "ProductoResponseDTO{" +
                 "id=" + id +
-                ", modelo='" + modelo + '\'' +
                 ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
                 ", precio=" + precio +
                 ", creado=" + creado +
                 ", actualizado=" + actualizado +
@@ -114,3 +96,4 @@ public class Producto {
                 '}';
     }
 }
+
